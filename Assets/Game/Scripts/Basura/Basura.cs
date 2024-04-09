@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Enemy : MonoBehaviour
+public class Basura:MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public float lifeTime = 6f; // Tiempo de vida del enemigo
+
+    void Start()
+    {
+        StartCoroutine(DestroyAfterLifetime());
+    }
 
     void Update()
     {
@@ -17,5 +22,11 @@ public class Enemy : MonoBehaviour
         {
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
+    }
+
+    IEnumerator DestroyAfterLifetime()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        BasuraPool.ReturnBasura(gameObject);
     }
 }

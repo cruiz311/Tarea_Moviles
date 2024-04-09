@@ -3,36 +3,51 @@ using System.Collections;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefabs; // Array de prefabs de enemigos y basura
     public float spawnInterval = 3f;
     public float moveSpeed = 5f;
-    public float spawnRangeMinX = -3.5f;
-    public float spawnRangeMaxX = 3.5f;
+    public float spawnRangeMinY = -3.5f; // Rango mínimo en el eje Y
+    public float spawnRangeMaxY = 3.5f; // Rango máximo en el eje Y
+
+    private float spawnTimer;
 
     void Start()
     {
-        StartCoroutine(SpawnEnemies());
+        EnemyPool.Initialize(enemyPrefabs[0]);
+        BasuraPool.Initialize(enemyPrefabs[1]);
+        spawnTimer = 0f;
     }
 
-    IEnumerator SpawnEnemies()
+    void Update()
     {
-        while (true)
+        spawnTimer += Time.deltaTime;
+        if (spawnTimer >= spawnInterval)
         {
-            // Calcular una posición aleatoria en el eje Y dentro del rango especificado
-            float spawnPosY = Random.Range(spawnRangeMinX, spawnRangeMaxX);
-            Vector3 spawnPosition = new Vector3(transform.position.x, spawnPosY, transform.position.z);
-
-            // Instanciar el enemigo en la posición calculada
-            GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-
-            // Obtener el componente Enemy y establecer su velocidad de movimiento
-            Enemy enemyComponent = newEnemy.GetComponent<Enemy>();
-            if (enemyComponent != null)
+            int randomNumber = Random.Range(0, 2);
+            if (randomNumber == 0)
             {
-                enemyComponent.moveSpeed = moveSpeed;
+                SpawnEnemy();
+            }
+            else
+            {
+                SpawnBasura();
             }
 
-            yield return new WaitForSeconds(spawnInterval);
+            spawnTimer = 0f;
         }
+    }
+
+    void SpawnEnemy()
+    {
+        Vector3 spawnPosition = new Vector3(transform.position.x, Random.Range(spawnRangeMinY, spawnRangeMaxY), transform.position.z);
+        Quaternion spawnRotation = Quaternion.identity;
+        GameObject enemy = EnemyPool.GetEnemy(spawnPosition, spawnRotation);
+    }
+
+    void SpawnBasura()
+    {
+        Vector3 spawnPosition = new Vector3(transform.position.x, Random.Range(spawnRangeMinY, spawnRangeMaxY), transform.position.z);
+        Quaternion spawnRotation = Quaternion.identity;
+        GameObject basura = BasuraPool.GetBasura(spawnPosition, spawnRotation);
     }
 }

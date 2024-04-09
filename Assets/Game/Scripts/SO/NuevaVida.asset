@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1af2f8ca2678242a3e9b80c709a0c3, type: 3}
   m_Name: NuevaVida
   m_EditorClassIdentifier: 
-  vidaInicial: 100
+  vidas: 7
