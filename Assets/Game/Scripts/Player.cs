@@ -1,12 +1,13 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    private SceneGlobalManager sceneGlobalManager;
     public VidaSO vidaSO;
     public PuntajeSO puntajeSO;
     public DatosPersonaje datospersonaje;
     public balaOP balas;
+    public bool lost = false;
     private float Timer;
     public float fireRate = 0.5f; // Tasa de disparo en segundos
     private float nextFireTime; // Tiempo para el próximo disparo
@@ -17,14 +18,17 @@ public class Player : MonoBehaviour
         datospersonaje = GameManager.Instance.ObtenerDatosPersonaje();
         vidaSO.vidas = datospersonaje.vida;
         nextFireTime = 0f; // Inicializa el tiempo para el próximo disparo
+        sceneGlobalManager = SceneGlobalManager.Instance;
     }
 
     void Update()
     {
-        if (vidaSO.vidas <= 0)
+        if (vidaSO.vidas <= 0 && !lost)
         {
+            lost = true;
             puntajeSO.ActualizarPuntaje(puntajeSO.puntaje);
-            SceneManager.LoadScene("LoseScene");
+            sceneGlobalManager.changeSceneAsyncAditivo("LoseScene");
+
         }
 
         if (Input.GetMouseButton(0) && Time.time > nextFireTime)

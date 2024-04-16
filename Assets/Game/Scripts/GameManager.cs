@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     public int puntos = 0;
     private float puntosganados;
-
+    public Time pausa;
     private DatosPersonaje datosPersonaje;
 
     private void Awake()
@@ -35,11 +34,6 @@ public class GameManager : MonoBehaviour
         return Mathf.FloorToInt(puntosganados);
     }
 
-    public void changeScene(string nombreScena)
-    {
-        SceneManager.LoadScene(nombreScena);
-    }
-
     public void EstablecerPersonaje(DatosPersonaje datos)
     {
         datosPersonaje = datos;
@@ -48,5 +42,14 @@ public class GameManager : MonoBehaviour
     public DatosPersonaje ObtenerDatosPersonaje()
     {
         return datosPersonaje;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+    }
+    public void Game()
+    {
+        Time.timeScale = 1f;
     }
 }
