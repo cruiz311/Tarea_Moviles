@@ -12,5 +12,6 @@ public class ChngeScene:MonoBehaviour
     public void ChangeSceneManual(string text)
     {
         SceneGlobalManager.changeScene(text);
+        GameManager.Instance.Game();
     }
 }

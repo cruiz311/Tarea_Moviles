@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
             lost = true;
             puntajeSO.ActualizarPuntaje(puntajeSO.puntaje);
             sceneGlobalManager.changeSceneAsyncAditivo("LoseScene");
-
+            GameManager.Instance.Pause();
         }
 
         if (Input.GetMouseButton(0) && Time.time > nextFireTime)

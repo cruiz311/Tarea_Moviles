@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9c5ebd54102b8a47bdc317ef0efcc8d, type: 3}
-  m_Name: NuevoPuntaje
+  m_Script: {fileID: 11500000, guid: 2efc6b6a875401f498de4d95cfd1b678, type: 3}
+  m_Name: noti2
   m_EditorClassIdentifier: 
-  puntaje: 0
-  puntajeMax: 0
-  noti1: {fileID: 11400000, guid: 2ae3ad3dbf4ea0f419e51f36b4bc28ad, type: 2}
-  noti2: {fileID: 11400000, guid: b9ec2f0f5f0a24841a3b21016185fd8b, type: 2}
+  title: Nuevo Puntaje Maximo
+  text: 
+  fireTime: 0
+  smallIcon: icon_2
+  largeIcon: icon_3

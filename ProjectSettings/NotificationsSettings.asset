@@ -13,7 +13,8 @@
                 "UnityNotificationRequestAuthorizationForRemoteNotificationsOnAppLaunch",
                 "UnityRemoteNotificationForegroundPresentationOptions",
                 "UnityUseAPSReleaseEnvironment",
-                "UnityUseLocationNotificationTrigger"
+                "UnityUseLocationNotificationTrigger",
+                "UnityAddTimeSensitiveEntitlement"
             ],
             "m_Values": [
                 "True",
@@ -22,6 +23,7 @@
                 "False",
                 "-1",
                 "False",
+                "False",
                 "False"
             ]
         },
@@ -29,14 +31,53 @@
             "m_Keys": [
                 "UnityNotificationAndroidRescheduleOnDeviceRestart",
                 "UnityNotificationAndroidUseCustomActivity",
-                "UnityNotificationAndroidCustomActivityString"
+                "UnityNotificationAndroidCustomActivityString",
+                "UnityNotificationAndroidScheduleExactAlarms"
             ],
             "m_Values": [
                 "False",
                 "False",
-                "com.unity3d.player.UnityPlayerActivity"
+                "com.unity3d.player.UnityPlayerActivity",
+                "0"
             ]
         },
-        "DrawableResources": []
+        "DrawableResources": [
+            {
+                "Id": "icon_0",
+                "Type": 0,
+                "Asset": {
+                    "fileID": 2800000,
+                    "guid": "41fe2881dc1818444b9d2d7fc9a93f18",
+                    "type": 3
+                }
+            },
+            {
+                "Id": "icon_1",
+                "Type": 1,
+                "Asset": {
+                    "fileID": 2800000,
+                    "guid": "f34442b468ced3143931dff2bd4f581f",
+                    "type": 3
+                }
+            },
+            {
+                "Id": "icon_2",
+                "Type": 0,
+                "Asset": {
+                    "fileID": 2800000,
+                    "guid": "f32a6a85b8a7aec42894399ac6703688",
+                    "type": 3
+                }
+            },
+            {
+                "Id": "icon_3",
+                "Type": 0,
+                "Asset": {
+                    "fileID": 2800000,
+                    "guid": "9f4dce95d841f6746bdb8949a17d296d",
+                    "type": 3
+                }
+            }
+        ]
     }
 }

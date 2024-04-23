@@ -604,7 +604,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1305517359}
         m_TargetAssemblyTypeName: NotificationSimple, Assembly-CSharp
-        m_MethodName: ButtonFunction
+        m_MethodName: SendNotification
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -681,6 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afdf62ba5a0b9ad4d82d686d21c9f06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notificationData: {fileID: 11400000, guid: 2ae3ad3dbf4ea0f419e51f36b4bc28ad, type: 2}
 --- !u!4 &1305517360
 Transform:
   m_ObjectHideFlags: 0

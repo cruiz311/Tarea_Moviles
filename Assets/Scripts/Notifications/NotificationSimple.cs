@@ -10,7 +10,23 @@ using UnityEngine.Android;
 
 public class NotificationSimple : MonoBehaviour
 {
+
+    private static NotificationSimple _instance;
+    public static NotificationSimple Instance { get { return _instance; } }
     private const string idCanal = "canalNotificacion";
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -18,6 +34,7 @@ public class NotificationSimple : MonoBehaviour
         RequestAuhtorization();
         RegisterNotificationChannel();
 #endif
+        
     }
 
 #if UNITY_ANDROID
@@ -45,21 +62,16 @@ public class NotificationSimple : MonoBehaviour
     }
 
     //Set Up Notification Template
-    public void SendNotification(string title, string text, int fireTimeInHours)
+    public void SendNotification(NotificationData notificacionScore)
     {
         AndroidNotification notification = new AndroidNotification();
-        notification.Title = title;
-        notification.Text = text;
-        notification.FireTime = DateTime.Now.AddHours(fireTimeInHours);
-        notification.SmallIcon = "icon_0";
-        notification.LargeIcon = "icon_1";
+        notification.Title = notificacionScore.title;
+        notification.Text = notificacionScore.text;
+        notification.FireTime = DateTime.Now.AddHours(notificacionScore.fireTime);
+        notification.SmallIcon = notificacionScore.smallIcon;
+        notification.LargeIcon = notificacionScore.largeIcon;
 
         AndroidNotificationCenter.SendNotification(notification, "default_channel");
-    }
-
-    public void ButtonFunction()
-    {
-        SendNotification("Dummy Notification", "This is a sample Notification", 0);
     }
 #endif
 }
